@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Detail</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="roomsDetail.js"></script>
+</head>
+<body class="">
+    <div class="navbar">
+        <a href="../../login/loginseite.html">Login</a>
+        <a href="../../index.html">Startseite</a>
+        <a href="../roomsDetail/roomsDetail.html">Zimmer</a>
+        <a href="../../parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
+      </div>
+    <div class="max-w-2xl mx-auto">
+        <label for="flors" class="block text-sm font-medium text-gray-600">Choose a floor:</label>
+        <select name="flors" id="flors" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+            <option value="groundFloor">Ground Floor</option>
+            <option value="firstFloor">1st Floor</option>
+            <option value="secondFloor">2nd Floor</option>
+        </select>
+        
+        <div id="roomsWindow">
+        </div>
+        <div class="flex justify-center items-center mt-10">
+            <!-- Schaltfläche für einen Tag zurück -->
+            <button id="prevDayBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2.5"><<</button>
+    
+            <!-- Datumsauswahl -->
+            <label for="datepicker" class="block text-sm font-medium text-gray-600">Select a Date:</label>
+            <input type="date" id="datepicker" name="datepicker" class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+    
+            <!-- Schaltfläche für einen Tag vorwärts -->
+            <button id="nextDayBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2.5">>></button>
+        </div>
+        
+        <div class="flex flex-col justify-center items-center mt-10" id="rooms">
+        </div>   
+
+        <div class="flex justify-center items-center mt-10">
+            <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2.5 " onclick="window.location.href = '../roomsReservirung/reservierung.html'">Jetzt dein eigenen Raum Reserviren...</button>
+        </div>
+        
+    </div>
+
+</body>
+</html>
+

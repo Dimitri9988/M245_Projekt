@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservierung</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<script src="reservierung.js"></script>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="../../login/loginseite.html">Login</a>
+        <a href="../../index.html">Startseite</a>
+        <a href="../roomsDetail/roomsDetail.html">Zimmer</a>
+        <a href="../../parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
+      </div>
+
+<div class="reservation-container">
+    <h1>Reservierungen</h1>
+    
+
+    
+    <div class="reservation-details" id="reservation-details">
+        <div>
+            <img src="https://c8.alamy.com/compde/2a88xek/verlassenen-klassenzimmer-in-pripyat-high-school-sowjetzeit-lehrbucher-2a88xek.jpg" alt="Raumbild" style="max-width: 100%; height: auto; margin: 20px 0;" />
+        </div>
+        <div class="text-left">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Rubin</h2>
+            <p class="text-gray-600 mb-2">30 Plätze mit Computer</p>
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
+            <ul class="list-disc pl-5 text-gray-600">
+                <li>8 - 12 Uhr</li>
+        </div>
+    </div>
+    
+    <form action="/reserve" method="post">
+        <label for="room">Raum</label>
+        <select id="room" name="room">
+            <option value="rubin">Rubin</option>
+            <option value="smaragd">Smaragd</option>
+            <option value="sorbonne">Sorbonne</option>
+            <option value="harvard">Harvard</option>
+            <option value="cambridge">Cambridge</option>
+            <option value="boston">Boston</option>
+            <option value="blueemlisalp">Blüemlisalp</option>
+            <option value="eiger">Eiger</option>
+        </select>
+        
+        <label for="date">Datum</label>
+        <input type="date" id="date" name="date" class="date-time-input" required>
+        
+        <label for="time-from">Zeit von...</label>
+        <input type="time" id="time-from" name="time-from" class="date-time-input" required>
+        
+        <label for="time-to">Zeit bis...</label>
+        <input type="time" id="time-to" name="time-to" class="date-time-input" required>
+        
+        <input type="submit" value="Jetzt Reservieren" class="submit-button" onclick="window.location.href = '../../index.html'">
+    </form>
+</div>
+
+</body>
+</html>

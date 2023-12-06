@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../style.css">
+<title>Registrierungsseite</title>
+</head>
+<body>
+
+<div class="navbar">
+  <a href="login">Login</a>
+  <a href="zimmer">Zimmer</a>
+  <a href="parkplaetze">Parkplätze</a>
+  <a href="reservierung">Reservierung</a>
+</div>
+
+<div class="login-container">
+  <form action="/register" method="post">
+    <label for="username">Benutzername</label>
+    <input type="text" id="username" name="username" placeholder="Benutzername eingeben" required>
+
+    <label for="firstname">Vorname</label>
+    <input type="text" id="firstname" name="firstname" placeholder="Vorname eingeben" required>
+
+    <label for="lastname">Nachname</label>
+    <input type="text" id="lastname" name="lastname" placeholder="Nachname eingeben" required>
+
+    <label for="email">E-Mail</label>
+    <input type="email" id="email" name="email" placeholder="E-Mail Adresse eingeben" required>
+
+    <label for="phone">Telefon</label>
+    <input type="tel" id="phone" name="phone" placeholder="Telefonnummer eingeben">
+
+    <label for="password">Passwort</label>
+    <input type="password" id="password" name="password" placeholder="Passwort eingeben" required>
+
+    <label for="password-repeat">Password wiederholen</label>
+    <input type="password" id="password-repeat" name="password-repeat" placeholder="Passwort wiederholen" required>
+
+    <input type="submit" value="Registrieren">
+  </form>
+</div>
+
+</body>
+</html>

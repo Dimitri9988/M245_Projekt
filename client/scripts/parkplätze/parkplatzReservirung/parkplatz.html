@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parkplätze</title>
+<link rel="stylesheet" href="../../style.css">
+
+
+</head>
+<body>
+    <div class="navbar">
+        <a href="../../login/loginseite.html">Login</a>
+        <a href="../../index.html">Startseite</a>
+        <a href="../../rooms/roomsDetail/roomsDetail.html">Zimmer</a>
+        <a href="../../parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
+      </div>
+<div class="parking-container">
+    <h1>Parkplätze</h1>
+    <select name="parking-selection" class="parking-selection" onchange="showParkingImage(this.value)">
+        <option value="vorne">Parkplatz aussen (vorne)</option>
+        <option value="links">Parkplatz aussen (links)</option>
+        <option value="tiefgarage">Parkplatz Tiefgarage</option>
+    </select>
+    
+    <div id="parking-image-container">
+        <img id="parking-image" src="path_to_default_image.jpg" alt="Parkplatzübersicht">
+    </div>
+
+    <div class="button-container">
+        <button onclick="reserveParking()">Jetzt Reservieren</button>
+    </div>
+</div>
+
+<script>
+    function showParkingImage(selection) {
+        var imagePath = 'path_to_' + selection + '_image.jpg';
+        document.getElementById('parking-image').src = imagePath;
+        document.getElementById('parking-image').alt = 'Parkplatz ' + selection;
+    }
+
+    function reserveParking() {
+        let loggedIn = false; 
+
+        if(loggedIn) {
+            window.location.href = 'reservierung.html'; 
+        } else {
+            window.location.href = 'loginseite.html'; 
+        }
+
+    }
+</script>
+
+</body>
+</html>
