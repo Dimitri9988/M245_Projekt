@@ -32,6 +32,9 @@ app.use(express.static("client"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/client/scripts/index.html");
 });
+app.get("/rooms", (req, res) => {
+  res.sendFile(__dirname + "/client/scripts/rooms/roomsDetail/roomsDetail.html");
+});
 // Initialize the REST api
 initializeAPI(app);
 

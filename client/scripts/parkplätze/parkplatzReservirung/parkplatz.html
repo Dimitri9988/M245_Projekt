@@ -4,52 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parkplätze</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../style.css">
+<script src="parkingspotReservation.js"></script>
 
 
 </head>
 <body>
+
     <div class="navbar">
         <a href="../../login/loginseite.html">Login</a>
         <a href="../../index.html">Startseite</a>
         <a href="../../rooms/roomsDetail/roomsDetail.html">Zimmer</a>
         <a href="../../parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
       </div>
-<div class="parking-container">
-    <h1>Parkplätze</h1>
-    <select name="parking-selection" class="parking-selection" onchange="showParkingImage(this.value)">
-        <option value="vorne">Parkplatz aussen (vorne)</option>
-        <option value="links">Parkplatz aussen (links)</option>
-        <option value="tiefgarage">Parkplatz Tiefgarage</option>
-    </select>
+
+<div class="reservation-container">
+    <h1>Reservierungen</h1>
     
-    <div id="parking-image-container">
-        <img id="parking-image" src="path_to_default_image.jpg" alt="Parkplatzübersicht">
-    </div>
 
-    <div class="button-container">
-        <button onclick="reserveParking()">Jetzt Reservieren</button>
+    
+    <div class="reservation-details" id="reservation-details">
     </div>
+    
+    
+        <label for="park">Parkplatz</label>
+        <select id="park" name="park">
+            <option value="park1Left">Parkplatz 1 Links</option>
+            <option value="park2Left">Parkplatz 2 Links</option>
+            <option value="park3Left">Parkplatz 3 Links</option>
+            <option value="park4Left">Parkplatz 4 Links</option>
+            <option value="park5Left">Parkplatz 5 Links</option>
+            <option value="park6Left">Parkplatz 6 Links</option>
+            <option value="park7Left">Parkplatz 7 Links</option>
+            <option value="park8Left">Parkplatz 8 Links</option>
+            <option value="park1front">Parkplatz 1 Vorne</option>
+            <option value="park2front">Parkplatz 2 Vorne</option>
+            <option value="park3front">Parkplatz 3 Vorne</option>
+        </select>
+        
+        <label for="date">Datum</label>
+        <input type="date" id="date" name="date" class="date-time-input" required>
+        
+        <label for="time-from">Zeit von...</label>
+        <input type="time" id="time-from" name="time-from" class="date-time-input" required>
+        
+        <label for="time-to">Zeit bis...</label>
+        <input type="time" id="time-to" name="time-to" class="date-time-input" required>
+        
+        <button id="submit-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-6 rounded-full">Jetzt Reserviren</button>
+
 </div>
-
-<script>
-    function showParkingImage(selection) {
-        var imagePath = 'path_to_' + selection + '_image.jpg';
-        document.getElementById('parking-image').src = imagePath;
-        document.getElementById('parking-image').alt = 'Parkplatz ' + selection;
-    }
-
-    function reserveParking() {
-        let loggedIn = false; 
-
-        if(loggedIn) {
-            window.location.href = 'reservierung.html'; 
-        } else {
-            window.location.href = 'loginseite.html'; 
-        }
-
-    }
-</script>
 
 </body>
 </html>
