@@ -3,8 +3,8 @@ const http = require("http");
 var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
 const { initializeAPI } = require("./server/api");
+const { initializeMySQL } = require("./server/database");
 const {
-  initializeMariaDB,
   initializeDBSchema,
   executeSQL,
 } = require("./server/database");
@@ -12,7 +12,7 @@ const {
 // Create the express server
 const app = express();
 const server = http.createServer(app);
-
+app.use(express.json());
 // create a livereload server
 const env = process.env.NODE_ENV || "development";
 if (env !== "production") {

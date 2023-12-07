@@ -131,24 +131,25 @@ const loadRooms = () => {
     }
 }
 const postRoomReserwation = async () => {
-    const room = document.getElementById('room').value
-    const date = document.getElementById('date').value
-    const timefrom = document.getElementById('time-from').value
-    const timeto = document.getElementById('time-to').value
+    const room = document.getElementById('room').value;
+    const date = document.getElementById('date').value;
+    const timefrom = document.getElementById('time-from').value;
+    const timeto = document.getElementById('time-to').value;
     const resRoom = {
         room: room,
         date: date,
         timefrom: timefrom,
         timeto: timeto
-    }
+    };
+
     await fetch("/api/roomReservation", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(resRoom),
-      });
-}
+    });
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     
