@@ -23,19 +23,9 @@
 
     
     <div class="reservation-details" id="reservation-details">
-        <div>
-            <img src="https://c8.alamy.com/compde/2a88xek/verlassenen-klassenzimmer-in-pripyat-high-school-sowjetzeit-lehrbucher-2a88xek.jpg" alt="Raumbild" style="max-width: 100%; height: auto; margin: 20px 0;" />
-        </div>
-        <div class="text-left">
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Rubin</h2>
-            <p class="text-gray-600 mb-2">30 Plätze mit Computer</p>
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
-            <ul class="list-disc pl-5 text-gray-600">
-                <li>8 - 12 Uhr</li>
-        </div>
     </div>
     
-    <form action="/reserve" method="post">
+    
         <label for="room">Raum</label>
         <select id="room" name="room">
             <option value="rubin">Rubin</option>
@@ -57,8 +47,8 @@
         <label for="time-to">Zeit bis...</label>
         <input type="time" id="time-to" name="time-to" class="date-time-input" required>
         
-        <input type="submit" value="Jetzt Reservieren" class="submit-button" onclick="window.location.href = '../../index.html'">
-    </form>
+        <button id="submit-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-6 rounded-full">Jetzt Reserviren</button>
+
 </div>
 
 </body>

@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../style.css">
 <title>Startseite - Zimmer und Parkplatzverwaltung</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="../style.css">
+
 <style>
   body { font-family: Arial, sans-serif; margin: 0; }
   .navbar { overflow: hidden; background-color: #333; }
@@ -18,31 +20,22 @@
   }
 </style>
 </head>
-<body>
+<body class="font-sans bg-gray-100">
 
 <div class="navbar">
   <a href="/scripts/login/loginseite.html">Login</a>
-  <a href="index.html">Startseite</a>
+  <a href="/scripts/index.html">Startseite</a>
   <a href="/scripts/rooms/roomsDetail/roomsDetail.html">Zimmer</a>
   <a href="/scripts/parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
 </div>
-
-<div class="main-content">
-  <p>Wir bieten verschiedene Zimmer und Parkplätze zum Mieten an.</p>
-  <img src="../images/csbe_gebeude.jpg" alt="Aussenansicht des Gebäudes">
-  <div id="map" style="height:400px;"></div>
-  <div class="address">
+<img src="../images/csbe_gebeude.jpg" alt="Aussenansicht des Gebäudes" class="w-full max-h-400 object-cover mb-4">
+<div class="max-w-2xl mx-auto">
+  
+  <h1 class="text-3xl mb-4">Willkommen bei der Zimmer und Parkplatzverwaltung</h1>
+  <div class="map-container mt-4">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2723.9650572086225!2d7.427428576355704!3d46.94272587113674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e39b03e6d3737%3A0xbf44d0d4115d145d!2sComputerschule%20Bern%20AG!5e0!3m2!1sde!2sch!4v1701873102566!5m2!1sde!2sch" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </div>
 
-<iframe
-src="https://www.google.com/maps/place/Computerschule+Bern+AG/@46.9427254,7.4197038,15z/data=!3m1!4b1!4m6!3m5!1s0x478e39b03e6d3737:0xbf44d0d4115d145d!8m2!3d46.9427259!4d7.4300035!16s%2Fg%2F1tpf60wm?entry=ttu"
-width="600"
-height="450"
-style="border:0;"
-allowfullscreen=""
-loading="lazy">
-</iframe>
-<p>Computerschule Bern<br>Zieglerstrasse 64<br>3000 Bern</p>
 </body>
 </html>

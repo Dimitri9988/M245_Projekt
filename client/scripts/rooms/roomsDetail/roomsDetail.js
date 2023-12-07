@@ -1,4 +1,7 @@
+
+
 const loadPage = () => {
+    
     const roomsWindow = document.getElementById('roomsWindow');
     if (document.getElementById("flors").value === "groundFloor") {
         
@@ -106,7 +109,7 @@ const loadRooms = () => {
 
             </div>
 
-            <div class="flex flex-row space-x-4">
+            <div class="flex flex-row space-x-4 mt-4">
 
                 <div class="flex-1 bg-white border border-gray-300 rounded-lg overflow-hidden">
                     <div class="m-2">

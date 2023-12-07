@@ -7,7 +7,7 @@
     <title>My Chat Program</title>
     <link rel="stylesheet" href="../../style.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="roomsDetail.js"></script>
+    <script src="parkingDetail.js"></script>
 </head>
 <body class="">
     <div class="navbar">
@@ -17,15 +17,16 @@
         <a href="../../parkplätze/parkplatzDetail/parkplatzDetail.html">Parkplätze</a>
       </div>
     <div class="max-w-2xl mx-auto">
-        <label for="flors" class="block text-sm font-medium text-gray-600">Choose a floor:</label>
-        <select name="flors" id="flors" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
-            <option value="groundFloor">Ground Floor</option>
-            <option value="firstFloor">1st Floor</option>
-            <option value="secondFloor">2nd Floor</option>
+        <label for="parking" class="block text-sm font-medium text-gray-600">Choose a floor:</label>
+        <select name="parking" id="parking" class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300">
+            <option value="parkingSpotLeft">Parkplätze Links</option>
+            <option value="parkingSpotFront">Parkplätze Vorne</option>
         </select>
         
-        <div id="roomsWindow">
+        <div id="parkingWindow">
         </div>
+        
+
         <div class="flex justify-center items-center mt-10">
             <!-- Schaltfläche für einen Tag zurück -->
             <button id="prevDayBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2.5"><<</button>
@@ -38,7 +39,7 @@
             <button id="nextDayBtn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2.5">>></button>
         </div>
         
-        <div class="flex flex-col justify-center items-center mt-10" id="rooms">
+        <div class="flex flex-col justify-center items-center mt-10" id="parkingspots">
         </div>   
 
         <div class="flex justify-center items-center mt-10">

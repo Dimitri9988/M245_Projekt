@@ -1,3 +1,4 @@
+const roomResArray = []
 const loadRooms = () => {
     const selectedRoom = document.getElementById('reservation-details')
     if (document.getElementById('room').value === 'smaragd') {
@@ -129,8 +130,36 @@ const loadRooms = () => {
         selectedRoom.innerHTML = roomElement;
     }
 }
+const postRoomReserwation = async () => {
+    const room = document.getElementById('room').value
+    const date = document.getElementById('date').value
+    const timefrom = document.getElementById('time-from').value
+    const timeto = document.getElementById('time-to').value
+    const resRoom = {
+        room: room,
+        date: date,
+        timefrom: timefrom,
+        timeto: timeto
+    }
+    await fetch("/api/roomReservation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(resRoom),
+      });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    
     document.getElementById('room').addEventListener('click', function () {
         loadRooms()
+    });
+
+    document.getElementById('submit-button').addEventListener('click', function () {
+        
+        postRoomReserwation()
+        //window.location.href = '../../index.html';
+
     });
 })
