@@ -32,9 +32,28 @@ app.use(express.static("client"));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/client/scripts/index.html");
 });
+// route for the rooms page
 app.get("/rooms", (req, res) => {
   res.sendFile(__dirname + "/client/scripts/rooms/roomsDetail/roomsDetail.html");
 });
+// route for the reservation page from rooms
+app.get("/rooms/reservation", (req, res) => {
+  res.sendFile(__dirname + "/client/scripts/rooms/roomsReservirung/reservierung.html");
+});
+// route for the login page
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/client//scripts/login/loginseite.html");
+});
+// route for the parking page
+app.get("/parking", (req, res) => {
+  res.sendFile(__dirname + "/client/scripts/parkplätze/parkplatzDetail/parkplatzDetail.html");
+});
+// route for the reservation page from parking
+app.get("/parking/reservation", (req, res) => {
+  res.sendFile(__dirname + "/client/scripts/parkplätze/parkplatzReservirung/parkplatz.html");
+});
+
+
 // Initialize the REST api
 initializeAPI(app);
 
