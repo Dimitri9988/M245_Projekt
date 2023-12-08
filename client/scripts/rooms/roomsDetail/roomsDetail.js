@@ -34,8 +34,35 @@ const loadPage = () => {
     }
 }
 
+
+
+
 const loadRooms = () => {
     const roomsWindow = document.getElementById('rooms');
+
+    fetch('/api/getReservations')
+        .then(response => response.json())
+        .then(data => {
+            roomData = data;
+            selectRooms();  // Hier sollte selectRooms aufgerufen werden
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen der Reservierungen:', error);
+            // Hier können Sie auf einen Fehler reagieren und die Benutzeroberfläche aktualisieren
+        });
+
+
+        const selectRooms = () => {
+            console.log(roomData)
+        };
+
+
+
+
+
+
+    
+
     if (document.getElementById("flors").value === "groundFloor") {
         
         const chatBoxElement =

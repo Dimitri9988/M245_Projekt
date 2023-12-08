@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mychatpassword
+      MYSQL_DATABASE: mychat
+      MYSQL_USER: mychat
+      MYSQL_PASSWORD: mychatpassword
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: mychat
+      PMA_PASSWORD: mychatpassword
+    ports:
+      - "8080:80"
+    depends_on:
+      - mariadb

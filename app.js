@@ -1,10 +1,10 @@
 const express = require("express");
 const http = require("http");
-var livereload = require("livereload");
-var connectLiveReload = require("connect-livereload");
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
 const { initializeAPI } = require("./server/api");
-const { initializeMySQL } = require("./server/database");
 const {
+  initializeMariaDB,
   initializeDBSchema,
   executeSQL,
 } = require("./server/database");
@@ -12,7 +12,10 @@ const {
 // Create the express server
 const app = express();
 const server = http.createServer(app);
+
 app.use(express.json());
+
+
 // create a livereload server
 const env = process.env.NODE_ENV || "development";
 if (env !== "production") {
@@ -28,6 +31,7 @@ if (env !== "production") {
 
 // deliver static files from the client folder like css, js, images
 app.use(express.static("client"));
+
 // route for the homepage
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/client/scripts/index.html");
@@ -59,6 +63,16 @@ initializeAPI(app);
 
 // Allowing top-level await
 (async function () {
+  // Initialize the database
+  initializeMariaDB();
+  await initializeDBSchema();
+  const testDatabaseConnection = async () => {
+    const result = await executeSQL("SELECT * FROM reservationRooms;");
+    console.log(result);
+  };
+  // TODO: REMOVE!!!! test the database connection
+  await testDatabaseConnection();
+  //start the web server
   const serverPort = process.env.PORT || 3000;
   server.listen(serverPort, () => {
     console.log(

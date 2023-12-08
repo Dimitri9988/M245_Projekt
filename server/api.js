@@ -1,39 +1,48 @@
 const { executeSQL } = require("./database");
 
+
 const initializeAPI = (app) => {
   app.post("/api/roomReservation", postRoomReservation);
   app.post("/api/parkingspotReservation", postParkingspotReservation);
+  app.get("/api/getReservations", getReservations);
 };
 
 const postRoomReservation = async (req, res) => {
-  try {
-    const { room, date, timefrom, timeto } = req.body;
-    console.log(room + " / " + date + " / " + timefrom + " / " + timeto);
-    // Example of inserting data into the 'reservation' table
-    await executeSQL(
-      "INSERT INTO reservation (room, date, fromtime, totime) VALUES (?, ?, ?, ?)",
-      [room, date, timefrom, timeto]
-    );
-    res.status(200).send("Room reservation successful");
-  } catch (error) {
-    res.status(500).send("Internal Server Error");
-  }
+  const { room, date, timefrom, timeto } = req.body;
+  const sqlRoom = room
+  const sqlDate = date
+  const sqlTimefrom = timefrom
+  const sqlTimeto = timeto
+
+
+  const sqlQuery = `INSERT INTO reservationRooms (room, date, fromtime, totime) VALUES ('${sqlRoom}', '${sqlDate}', '${sqlTimefrom}', '${sqlTimeto}')`;
+  // Verwenden Sie executeSQL statt connection.query
+  console.log(sqlQuery)
+  await executeSQL(sqlQuery);
+
 };
+
 
 const postParkingspotReservation = async (req, res) => {
-  try {
-    const { parkspot, date, timefrom, timeto } = req.body;
-    console.log(parkspot + " / " + date + " / " + timefrom + " / " + timeto);
-    // Example of inserting data into the 'parkingspotReservation' table
-    await executeSQL(
-      "INSERT INTO parkingspotReservation (parkspot, date, fromtime, totime) VALUES (hallo, hallo, hallo, hallo)",
-      [parkspot, date, timefrom, timeto]
-    );
-    res.status(200).send("Parkingspot reservation successful");
-  } catch (error) {
-    res.status(500).send("Internal Server Error");
-  }
+  const { parkspot, date, timefrom, timeto } = req.body;
+  const sqlParkspot = parkspot
+  const sqlDate = date
+  const sqlTimefrom = timefrom
+  const sqlTimeto = timeto
+
+
+  const sqlQuery = `INSERT INTO reservationParkingSpots (parkingspot, date, fromtime, totime) VALUES ('${sqlParkspot}', '${sqlDate}', '${sqlTimefrom}', '${sqlTimeto}')`;
+  // Verwenden Sie executeSQL statt connection.query
+  console.log(sqlQuery)
+  await executeSQL(sqlQuery);
 };
 
 
-module.exports = { initializeAPI };
+const getReservations = async (req, res) => {
+  const getRoomRes = await executeSQL('SELECT * FROM reservationRooms');
+  const result = getRoomRes;
+
+  res.json(result);
+
+}
+module.exports = { initializeAPI, getReservations };
