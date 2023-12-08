@@ -141,14 +141,65 @@ const postRoomReserwation = async () => {
         timefrom: timefrom,
         timeto: timeto
     };
+    fetch('/api/getReservations')
+    .then(response => response.json())
+    .then(data => {
+        roomData = data;
+        console.log(roomData)
 
-    await fetch("/api/roomReservation", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(resRoom),
+        const selectRooms = () => {
+            const selectedDate = document.getElementById('date').value;
+            const selectedRoom = document.getElementById('room').value;    
+            // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
+            const filteredRooms = roomData.filter(room => room.date === selectedDate && room.room === selectedRoom);
+            return (filteredRooms)
+        };
+
+        const selectedRooms = selectRooms()
+
+        const Number = {
+            num1: document.getElementById('time-from').value, 
+            num2: document.getElementById('time-to').value
+        };
+        const Number2 = {
+            num1: selectedRooms[0].fromtime, 
+            num2: selectedRooms[0].totime
+        };
+
+        function areIntervalsOverlapping(interval1, interval2) {
+            return interval1.num1 < interval2.num2 && interval1.num2 > interval2.num1;
+        }
+
+        if (areIntervalsOverlapping(Number, Number2)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Fehler!',
+                text: 'Das ausgewählte Zeitfenster ist bereits belegt.',
+            });
+        } else {
+            safeRes();  // Sie müssen diese Funktion entsprechend implementieren.
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Erfolg!',
+                text: 'Die Reservierung wurde erfolgreich durchgeführt.',
+            });
+        }
     });
+
+
+
+    const safeRes = async () => {
+        await fetch("/api/roomReservation", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(resRoom),
+        });
+    }
+
+
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -160,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('submit-button').addEventListener('click', function () {
         
         postRoomReserwation()
-        window.location.href = '/';
+        //window.location.href = '/';
 
     });
 })
