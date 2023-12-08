@@ -21,8 +21,80 @@ const loadPage = () => {
             parkingWindow.innerHTML = parkingElement;
     }
 }
+
+
+let parkData;
 const loadParkingSpots = () => {
     const parkingspotWindow = document.getElementById('parkingspots');
+    
+    fetch('/api/getReservationsParking')
+        .then(response => response.json())
+        .then(data => {
+            parkData = data;
+            selectParks();
+    })
+    .catch(error => {
+        console.error('Fehler beim Abrufen der Reservierungen:', error);
+    });
+
+
+
+    
+
+    const selectParks = () => {
+        const selectedDate = document.getElementById('datepicker').value;
+                
+        // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
+        const filteredParks = parkData.filter(park => park.date === selectedDate);
+        return (filteredParks)
+    };
+
+    const newParks = selectParks()
+    const splitParks = (filterBy) => {
+        const filteredParks = newParks.filter(park =>park.parkingspot === filterBy);
+
+        return filteredParks
+    }
+    const reservationParkLeft1 = splitParks("park1Left")
+    const reservationParkLeft2 = splitParks("park2Left")
+    const reservationParkLeft3 = splitParks("park3Left")
+    const reservationParkLeft4 = splitParks("park4Left")
+    const reservationParkLeft5 = splitParks("park5Left")
+    const reservationParkLeft6 = splitParks("park6Left")
+    const reservationParkLeft7 = splitParks("park7Left")
+    const reservationParkLeft8 = splitParks("park8Left")
+    const reservationParkFront1 = splitParks("park1front")
+    const reservationParkFront2 = splitParks("park2front")
+    const reservationParkFront3 = splitParks("park3front")
+    console.log(reservationParkFront1)
+
+    const createReservationList = (reservationArray) => {
+        let listItems = '';
+
+        for (let i = 0; i < reservationArray.length; i++) {
+            const elementFromTime = reservationArray[i].fromtime;
+            const elementToTime = reservationArray[i].totime;
+
+            listItems += `<li>${elementFromTime} - ${elementToTime} Uhr</li>`;
+        }
+        return listItems
+    }
+
+    const reservationParkLeft1List = createReservationList(reservationParkLeft1)
+    const reservationParkLeft2List = createReservationList(reservationParkLeft2)
+    const reservationParkLeft3List = createReservationList(reservationParkLeft3)
+    const reservationParkLeft4List = createReservationList(reservationParkLeft4)
+    const reservationParkLeft5List = createReservationList(reservationParkLeft5)
+    const reservationParkLeft6List = createReservationList(reservationParkLeft6)
+    const reservationParkLeft7List = createReservationList(reservationParkLeft7)
+    const reservationParkLeft8List = createReservationList(reservationParkLeft8)
+    const reservationParkFront1List = createReservationList(reservationParkFront1)
+    const reservationParkFront2List = createReservationList(reservationParkFront2)
+    const reservationParkFront3List = createReservationList(reservationParkFront3)
+    console.log(reservationParkFront1List)
+
+
+
     if (document.getElementById("parking").value === "parkingSpotFront") {
         
         const parkingspotsElement =
@@ -35,7 +107,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 1 Vorne</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkFront1List}
                             </ul>
                         </div>
                     </div>
@@ -47,7 +119,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 2 Vorne</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkFront2List}
                             </ul>
                         </div>
                     </div>
@@ -61,7 +133,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 3 Vorne</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkFront3List}
                             </ul>
                         </div>
                     </div>
@@ -82,7 +154,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 1 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft1List}
                             </ul>
                         </div>
                     </div>
@@ -94,7 +166,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 2 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft2List}
                             </ul>
                         </div>
                     </div>
@@ -108,7 +180,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 3 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft3List}
                             </ul>
                         </div>
                     </div>
@@ -120,7 +192,7 @@ const loadParkingSpots = () => {
                         <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 4 Links</h2>
                         <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                         <ul class="list-disc pl-5 text-gray-600">
-                            <li>8 - 12 Uhr</li>
+                            ${reservationParkLeft4List}
                         </ul>
                     </div>
                 </div>
@@ -134,7 +206,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 5 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft5List}
                             </ul>
                         </div>
                     </div>
@@ -146,7 +218,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 6 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft6List}
                             </ul>
                         </div>
                     </div>
@@ -160,7 +232,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 7 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft7List}
                             </ul>
                         </div>
                     </div>
@@ -172,7 +244,7 @@ const loadParkingSpots = () => {
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Parkplatz 8 Links</h2>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationParkLeft8List}
                             </ul>
                         </div>
                     </div>

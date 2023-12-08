@@ -5,6 +5,7 @@ const initializeAPI = (app) => {
   app.post("/api/roomReservation", postRoomReservation);
   app.post("/api/parkingspotReservation", postParkingspotReservation);
   app.get("/api/getReservations", getReservations);
+  app.get("/api/getReservationsParking", getReservationsParking);
 };
 
 const postRoomReservation = async (req, res) => {
@@ -41,6 +42,15 @@ const postParkingspotReservation = async (req, res) => {
 const getReservations = async (req, res) => {
   const getRoomRes = await executeSQL('SELECT * FROM reservationRooms');
   const result = getRoomRes;
+
+  res.json(result);
+
+}
+
+
+const getReservationsParking = async (req, res) => {
+  const getParkRes = await executeSQL('SELECT * FROM reservationParkingSpots');
+  const result = getParkRes;
 
   res.json(result);
 

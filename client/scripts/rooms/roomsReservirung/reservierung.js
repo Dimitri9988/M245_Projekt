@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('submit-button').addEventListener('click', function () {
         
         postRoomReserwation()
-        //window.location.href = '../../index.html';
+        window.location.href = '/';
 
     });
 })

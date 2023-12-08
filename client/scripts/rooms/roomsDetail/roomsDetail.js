@@ -58,7 +58,6 @@ const loadRooms = () => {
             
         // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
         const filteredRooms = roomData.filter(room => room.date === selectedDate);
-;
         return (filteredRooms)
     };
 
@@ -81,11 +80,7 @@ const loadRooms = () => {
     const reservationBlueemlisalp = splitRooms("blueemlisalp")
 
     
-    for (let i = 0; i < reservationRubin.length; i++) {
-        const elementfromtime = reservationRubin[i].fromtime;
-        const elementtotime = reservationRubin[i].totime;
-        const newListElement= `<li>${reservationRubin[i].fromtime} - ${reservationRubin[i].totime} Uhr</li>`
-    }
+
 
 
     const createReservationList = (reservationArray) => {
@@ -265,6 +260,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevDayBtn = document.getElementById('prevDayBtn');
     const nextDayBtn = document.getElementById('nextDayBtn');
     document.getElementById('flors').addEventListener('click', function () {
+        loadPage()
+        loadRooms()
+    });
+    document.getElementById('prevDayBtn').addEventListener('click', function () {
+        loadPage()
+        loadRooms()
+    });
+    document.getElementById('datepicker').addEventListener('click', function () {
+        loadPage()
+        loadRooms()
+    });
+    document.getElementById('nextDayBtn').addEventListener('click', function () {
         loadPage()
         loadRooms()
     });
