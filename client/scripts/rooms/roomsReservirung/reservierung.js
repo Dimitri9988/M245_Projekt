@@ -162,8 +162,8 @@ const postRoomReserwation = async () => {
             num2: document.getElementById('time-to').value
         };
         const Number2 = {
-            num1: selectedRooms[0].fromtime, 
-            num2: selectedRooms[0].totime
+            num1: 23, 
+            num2: 23
         };
 
         function areIntervalsOverlapping(interval1, interval2) {
@@ -177,7 +177,7 @@ const postRoomReserwation = async () => {
                 text: 'Das ausgewählte Zeitfenster ist bereits belegt.',
             });
         } else {
-            safeRes();  // Sie müssen diese Funktion entsprechend implementieren.
+              // Sie müssen diese Funktion entsprechend implementieren.
 
             Swal.fire({
                 icon: 'success',
@@ -189,15 +189,13 @@ const postRoomReserwation = async () => {
 
 
 
-    const safeRes = async () => {
         await fetch("/api/roomReservation", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(resRoom),
-        });
-    }
+    })
 
 
 };
@@ -211,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('submit-button').addEventListener('click', function () {
         
         postRoomReserwation()
-        //window.location.href = '/';
+        window.location.href = '/';
 
     });
 })
