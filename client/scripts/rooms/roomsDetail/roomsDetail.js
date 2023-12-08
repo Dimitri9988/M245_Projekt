@@ -44,24 +44,41 @@ const loadRooms = () => {
         .then(response => response.json())
         .then(data => {
             roomData = data;
-            selectRooms();  // Hier sollte selectRooms aufgerufen werden
+            // Hier sollte selectRooms aufgerufen werden
         })
         .catch(error => {
             console.error('Fehler beim Abrufen der Reservierungen:', error);
             // Hier können Sie auf einen Fehler reagieren und die Benutzeroberfläche aktualisieren
         });
-
+        
+        
 
         const selectRooms = () => {
-            console.log(roomData)
+            const selectedDate = document.getElementById('datepicker').value;
+
+            // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
+            const filteredRooms = roomData.filter(room => room.date === selectedDate);
+;
+            return (filteredRooms)
         };
-
-
-
-
-
-
+    const Rooms = selectRooms()   
     
+    const splitRooms = (filterBy) => {
+        const filteredRooms = Rooms.filter(room => room.room === filterBy);
+
+        return filteredRooms
+    }
+    const reservationSmaragd = splitRooms("smaragd")
+    const reservationRubin = splitRooms("rubin")
+    const reservationHarvard = splitRooms("Harvard")
+    const reservationCambridge = splitRooms("Cambridge")
+    const reservationBoston = splitRooms("Boston")
+    const reservationEiger = splitRooms("eiger")
+    const reservationSorbone = splitRooms("sorbonne")
+    const reservationBlueemlisalp = splitRooms("Blueemlisalp")
+
+    console.log(reservationBlueemlisalp, reservationBoston, reservationCambridge, reservationEiger, reservationHarvard, reservationRubin, reservationSmaragd, reservationSorbone)
+
 
     if (document.getElementById("flors").value === "groundFloor") {
         
@@ -74,7 +91,7 @@ const loadRooms = () => {
                         <div class="p-4">
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Rubin</h2>
                             <p class="text-gray-600 mb-2">30 Plätze mit Computer</p>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">${Rooms[1].room}</h3>
                             <ul class="list-disc pl-5 text-gray-600">
                                 <li>8 - 12 Uhr</li>
                             </ul>
