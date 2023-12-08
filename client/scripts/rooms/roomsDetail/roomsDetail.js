@@ -77,7 +77,30 @@ const loadRooms = () => {
     const reservationSorbone = splitRooms("sorbonne")
     const reservationBlueemlisalp = splitRooms("Blueemlisalp")
 
-    console.log(reservationBlueemlisalp, reservationBoston, reservationCambridge, reservationEiger, reservationHarvard, reservationRubin, reservationSmaragd, reservationSorbone)
+    
+    for (let i = 0; i < reservationRubin.length; i++) {
+        const elementfromtime = reservationRubin[i].fromtime;
+        const elementtotime = reservationRubin[i].totime;
+        const newListElement= `<li>${reservationRubin[i].fromtime} - ${reservationRubin[i].totime} Uhr</li>`
+    }
+
+
+    const createReservationList = (reservationArray) => {
+        let listItems = '';
+
+        for (let i = 0; i < reservationArray.length; i++) {
+            const elementFromTime = reservationArray[i].fromtime;
+            const elementToTime = reservationArray[i].totime;
+            
+            // Füge das erstellte <li> Element zur Zeichenkette hinzu
+            listItems += `<li>${elementFromTime} - ${elementToTime} Uhr</li>`;
+        }
+        return listItems
+    }
+
+    const reservationRubinList = createReservationList(reservationRubin);
+
+
 
 
     if (document.getElementById("flors").value === "groundFloor") {
@@ -91,9 +114,9 @@ const loadRooms = () => {
                         <div class="p-4">
                             <h2 class="text-xl font-semibold text-gray-800 mb-2">Rubin</h2>
                             <p class="text-gray-600 mb-2">30 Plätze mit Computer</p>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">${Rooms[1].room}</h3>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservirungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationRubinList}
                             </ul>
                         </div>
                     </div>
