@@ -36,14 +36,14 @@ const loadPage = () => {
 
 
 
-
+let roomData;
 const loadRooms = () => {
     const roomsWindow = document.getElementById('rooms');
-
     fetch('/api/getReservations')
         .then(response => response.json())
         .then(data => {
             roomData = data;
+            selectRooms();
             // Hier sollte selectRooms aufgerufen werden
         })
         .catch(error => {
@@ -53,14 +53,17 @@ const loadRooms = () => {
         
         
 
-        const selectRooms = () => {
-            const selectedDate = document.getElementById('datepicker').value;
-
-            // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
-            const filteredRooms = roomData.filter(room => room.date === selectedDate);
+    const selectRooms = () => {
+        const selectedDate = document.getElementById('datepicker').value;
+            
+        // Filtere Objekte, deren Datum dem ausgewählten Datum entspricht
+        const filteredRooms = roomData.filter(room => room.date === selectedDate);
 ;
-            return (filteredRooms)
-        };
+        return (filteredRooms)
+    };
+
+
+
     const Rooms = selectRooms()   
     
     const splitRooms = (filterBy) => {
@@ -70,12 +73,12 @@ const loadRooms = () => {
     }
     const reservationSmaragd = splitRooms("smaragd")
     const reservationRubin = splitRooms("rubin")
-    const reservationHarvard = splitRooms("Harvard")
-    const reservationCambridge = splitRooms("Cambridge")
-    const reservationBoston = splitRooms("Boston")
+    const reservationHarvard = splitRooms("harvard")
+    const reservationCambridge = splitRooms("cambridge")
+    const reservationBoston = splitRooms("boston")
     const reservationEiger = splitRooms("eiger")
     const reservationSorbone = splitRooms("sorbonne")
-    const reservationBlueemlisalp = splitRooms("Blueemlisalp")
+    const reservationBlueemlisalp = splitRooms("blueemlisalp")
 
     
     for (let i = 0; i < reservationRubin.length; i++) {
@@ -99,6 +102,13 @@ const loadRooms = () => {
     }
 
     const reservationRubinList = createReservationList(reservationRubin);
+    const reservationHarvardList = createReservationList(reservationHarvard);
+    const reservationSmaragdList = createReservationList(reservationSmaragd);
+    const reservationCambridgeList = createReservationList(reservationCambridge);
+    const reservationBostonList = createReservationList(reservationBoston);
+    const reservationEigerList = createReservationList(reservationEiger);
+    const reservationSorboneList = createReservationList(reservationSorbone);
+    const reservationBlueemlisalpList = createReservationList(reservationBlueemlisalp);
 
 
 
@@ -129,8 +139,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">30 Plätze ohne Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>12 - 15 Uhr</li>
-                                <li>15 - 17 Uhr</li>
+                                ${reservationSmaragdList}
                             </ul>
                         </div>
                     </div>
@@ -153,7 +162,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">15 Plätze mit Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationSorboneList}
                             </ul>
                         </div>
                     </div>
@@ -167,8 +176,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">23 Plätze mit Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>12 - 15 Uhr</li>
-                                <li>15 - 17 Uhr</li>
+                                ${reservationHarvardList}
                             </ul>
                         </div>
                     </div>
@@ -187,7 +195,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">17 Plätze mit Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationCambridgeList}
                             </ul>
                         </div>
                     </div>
@@ -201,9 +209,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">17 Plätze mit Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>12 - 15 Uhr</li>
-                                <li>15 - 17 Uhr</li>
-                                <li>08 - 12 Uhr</li>
+                                ${reservationBostonList}
                             </ul>
                         </div>
                     </div>
@@ -228,7 +234,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">20 Plätze ohne Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>8 - 12 Uhr</li>
+                                ${reservationBlueemlisalpList}
                             </ul>
                         </div>
                     </div>
@@ -242,8 +248,7 @@ const loadRooms = () => {
                             <p class="text-gray-600 mb-2">20 Plätze mit Computer</p>
                             <h3 class="text-lg font-semibold text-gray-800 mb-2">Reservierungen</h3>
                             <ul class="list-disc pl-5 text-gray-600">
-                                <li>12 - 15 Uhr</li>
-                                <li>15 - 17 Uhr</li>
+                                ${reservationEigerList}
                             </ul>
                         </div>
                     </div>
