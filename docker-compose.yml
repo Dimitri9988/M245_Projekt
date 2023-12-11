@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    environment:
+      LDAP_ORGANISATION: "My Organization"
+      LDAP_DOMAIN: "example.com"
+      LDAP_ADMIN_PASSWORD: "adminpassword"
+    ports:
+      - "389:389"
+      - "636:636"
+    networks:
+      - my-network
+
   mariadb:
     image: mariadb
     restart: always
@@ -11,6 +23,8 @@ services:
       MYSQL_PASSWORD: mychatpassword
     ports:
       - "3306:3306"
+    networks:
+      - my-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -23,3 +37,8 @@ services:
       - "8080:80"
     depends_on:
       - mariadb
+    networks:
+      - my-network
+
+networks:
+  my-network:

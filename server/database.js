@@ -7,7 +7,7 @@ const initializeMariaDB = () => {
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "mychat",
     password: process.env.DB_PASSWORD || "mychatpassword",
-    connectionLimit: 5,
+    connectionLimit: 10,
   });
 };
 
@@ -19,7 +19,8 @@ const executeSQL = async (query) => {
     const res = await conn.query(query);
     return res;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    throw err; // Throw the error to handle it in the calling function
   } finally {
     if (conn) conn.release();
   }
